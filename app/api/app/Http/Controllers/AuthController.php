@@ -18,6 +18,7 @@ class AuthController extends Controller
         'required',
         'string',
         'max:255',
+        "regex:/^(?=.*\p{L})[\p{L}\p{N} '\-\.\,]+$/u"
       ],
       'email' => ['bail', 'required', 'email', 'max:255', 'unique:users'],
       'password' => ['required', 'string', 'min:10', 'confirmed']
@@ -29,7 +30,7 @@ class AuthController extends Controller
       'password' => Hash::make($validated['password'])
     ]);
 
-    Auth::login($user);
+    // Auth::login($user);
 
     return response()->json([
       'message' => 'User created successfully',

@@ -191,19 +191,19 @@ it('only creates a single user on signup', function () {
   $this->assertDatabaseCount('users', 1);
 });
 
-// it('ensures names are not just numbers', function () {
-//   /** @var \Tests\TestCase $this */
-//   $email = fake()->unique()->safeEmail();
-// 
-//   $response = $this->postJson('/api/signup', [
-//     'name' => '123456789',
-//     'email' => $email,
-//     'password' => 'password1234',
-//     'password_confirmation' => 'password1234',
-//   ]);
-// 
-//   $response->assertJsonValidationErrors(['name']);
-// });
+it('ensures names are not just numbers', function () {
+  /** @var \Tests\TestCase $this */
+  $email = fake()->unique()->safeEmail();
+
+  $response = $this->postJson('/api/signup', [
+    'name' => '123456789',
+    'email' => $email,
+    'password' => 'password1234',
+    'password_confirmation' => 'password1234',
+  ]);
+
+  $response->assertJsonValidationErrors(['name']);
+});
 
 it('enables use of international characters in names', function () {
   /** @var \Tests\TestCase $this */
