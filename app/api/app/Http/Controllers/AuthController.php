@@ -30,7 +30,7 @@ class AuthController extends Controller
       'password' => Hash::make($validated['password'])
     ]);
 
-    // Auth::login($user);
+    Auth::login($user);
 
     return response()->json([
       'message' => 'User created successfully',
